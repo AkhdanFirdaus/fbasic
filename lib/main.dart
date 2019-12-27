@@ -1,93 +1,59 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
-void main() => runApp(MyApp());
+void main() => runApp(Dice());
 
-class MyApp extends StatelessWidget {
+class Dice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.teal,
-        body: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              CircleAvatar(
-                radius: 50.0,
-                backgroundImage: AssetImage('images/7.jpg'),
-              ),
-              Text(
-                'Akhdan Firdaus',
-                style: TextStyle(
-                  fontFamily: 'Pacifico',
-                  fontSize: 28.0,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                'UI/UX Engineer',
-                style: TextStyle(
-                  fontFamily: 'Source Sans Pro',
-                  color: Colors.teal.shade100,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 2.5,
-                ),
-              ),
-              SizedBox(
-                height: 20.0,
-                width: 150.0,
-                child: Divider(
-                  color: Colors.teal.shade100,
-                  thickness: 2.0,
-                ),
-              ),
-              Card(
-                color: Colors.white,
-                margin: EdgeInsets.symmetric(
-                  vertical: 10.0,
-                  horizontal: 25.0,
-                ),
-                child: ListTile(
-                  leading: Icon(
-                    Icons.phone,
-                    color: Colors.teal,
-                  ),
-                  title: Text(
-                    '+62 821 1741 0702',
-                    style: TextStyle(
-                      color: Colors.teal.shade900,
-                      fontFamily: 'Source Sans Pro',
-                      fontSize: 20.0,
-                    ),
-                  ),
-                ),
-              ),
-              Card(
-                color: Colors.white,
-                margin: EdgeInsets.symmetric(
-                  vertical: 10.0,
-                  horizontal: 25.0,
-                ),
-                child: ListTile(
-                  leading: Icon(
-                    Icons.email,
-                    color: Colors.teal,
-                  ),
-                  title: Text(
-                    'akhdan.firdaus@hotmail.com',
-                    style: TextStyle(
-                      color: Colors.teal.shade900,
-                      fontFamily: 'Source Sans Pro',
-                      fontSize: 18.0,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+        backgroundColor: Colors.red,
+        appBar: AppBar(
+          title: Text('Dicee'),
+          backgroundColor: Colors.red,
         ),
+        body: DicePage(),
+      ),
+    );
+  }
+}
+
+class DicePage extends StatefulWidget {
+  DicePage({Key key}) : super(key: key);
+
+  @override
+  _DicePageState createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+  int leftDiceNumber = 1;
+  int rightDiceNumber = 2;
+  void changeDiceFace() {
+    setState(() {
+      rightDiceNumber = Random().nextInt(6) + 1;
+      leftDiceNumber = Random().nextInt(6) + 1;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: FlatButton(
+              child: Image.asset('images/dice$leftDiceNumber.png'),
+              onPressed: () => changeDiceFace(),
+            ),
+          ),
+          Expanded(
+            child: FlatButton(
+              child: Image.asset('images/dice$rightDiceNumber.png'),
+              onPressed: () => changeDiceFace(),
+            ),
+          ),
+        ],
       ),
     );
   }

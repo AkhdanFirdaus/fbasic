@@ -46,6 +46,12 @@ flutter:
   #  - images/a_dot_ham.jpeg
   assets:
   - images/7.jpg
+  - images/dice1.png
+  - images/dice2.png
+  - images/dice3.png
+  - images/dice4.png
+  - images/dice5.png
+  - images/dice6.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
